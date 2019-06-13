@@ -1,0 +1,45 @@
+<section>
+
+  <form action="asd.php" (ngSubmit)="add()">
+    <input placeholder="Insert your task..." [(ngModel)]='task' id='content' name="name" type="text">
+    <select [(ngModel)]='category' name="category" id="category" required>
+      <option value="">Category...</option>
+      <option value="Profissional">Professional</option>
+      <option value="Personal">Personal</option>
+    </select>
+    <input id='add' type="submit" value="Add">
+  </form>
+
+  <div>
+    <h3 *ngIf="todoListDone.length > 0">Done</h3>
+    <ul>
+      <li [class.completed-li]="todo.completed" *ngFor="let todo of todoListDone">
+        <span> <input [(ngModel)]='todo.completed' [checked]="todo.completed" (change)='updateStorage()' type="checkbox"
+            name="checkbox" id="">
+          <span [class.completed]="todo.completed">{{todo.content}}</span>
+        </span>
+        <span> <span [ngClass]="todo.category === 'Personal' ? 'cat-personal' : '
+          cat-prof'" *ngIf="todo.category">{{todo.category}}</span> <button (click)='delete(todo)'>X</button></span>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <div>
+    <h3 *ngIf="todoListToDo.length > 0">To do</h3>
+    <ul>
+      <li [class.completed-li]="todo.completed" *ngFor="let todo of todoListToDo"> <span> <input
+            [(ngModel)]='todo.completed' [checked]="todo.completed" (change)='updateStorage()' type="checkbox"
+            name="checkbox" id="">
+          <span [class.completed]="todo.completed">{{todo.content}}</span>
+        </span>
+        <span> <span [ngClass]="todo.category === 'Personal' ? 'cat-personal' : '
+          cat-prof'" *ngIf="
+            todo.category">{{todo.category}}</span> <button (click)='delete(todo)'>X</button></span>
+      </li>
+
+    </ul>
+
+  </div>
+</section>
